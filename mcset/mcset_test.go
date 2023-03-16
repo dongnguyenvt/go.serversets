@@ -3,7 +3,7 @@ package mcset
 import (
 	"net"
 
-	"github.com/strava/go.serversets/fixedset"
+	"github.com/dongnguyenvt/go.serversets/fixedset"
 
 	"testing"
 )

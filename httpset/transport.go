@@ -38,17 +38,9 @@ func NewTransport(watch Watcher) *Transport {
 		t.setEndpoints(watch.Endpoints())
 
 		go func() {
-			for {
-				select {
-				case <-watch.Event():
-					t.SetEndpoints(watch.Endpoints())
-				}
-
-				if watch.IsClosed() {
-					break
-				}
+			for range watch.Event() {
+				t.SetEndpoints(watch.Endpoints())
 			}
-
 			watcherClosed()
 		}()
 	}
@@ -118,7 +110,7 @@ func (t *Transport) SetEndpoints(endpoints []string) {
 func (t *Transport) setEndpoints(endpoints []string) {
 	// copy the contents,
 	// just to be triple sure an external client won't mess with stuff.
-	eps := make([]string, len(endpoints), len(endpoints))
+	eps := make([]string, len(endpoints))
 	copy(eps, endpoints)
 
 	t.endpoints = eps

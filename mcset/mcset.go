@@ -68,17 +68,9 @@ func New(watch Watcher) *MCSet {
 		mcset.setEndpoints(watch.Endpoints())
 
 		go func() {
-			for {
-				select {
-				case <-watch.Event():
-					mcset.SetEndpoints(watch.Endpoints())
-				}
-
-				if watch.IsClosed() {
-					break
-				}
+			for range watch.Event() {
+				mcset.SetEndpoints(watch.Endpoints())
 			}
-
 			watcherClosed()
 		}()
 	}
@@ -103,11 +95,11 @@ func (s *MCSet) setEndpoints(endpoints []string) {
 	addresses := make(map[string]net.Addr)
 	for _, e := range endpoints {
 
-		a, err := net.ResolveTCPAddr("tcp", e)
-		if err != nil {
-			// TODO: if the hostname doesn't resolve, what should we do?
-			// panic(err)
-		}
+		a, _ := net.ResolveTCPAddr("tcp", e)
+		//if err != nil {
+		// TODO: if the hostname doesn't resolve, what should we do?
+		// panic(err)
+		//}
 
 		addresses[e] = a
 	}

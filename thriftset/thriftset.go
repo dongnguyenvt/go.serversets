@@ -5,9 +5,8 @@ import (
 	"io"
 	"time"
 
-	"github.com/strava/go.serversets/internal/endpoints"
-
 	"github.com/apache/thrift/lib/go/thrift"
+	"github.com/dongnguyenvt/go.serversets/internal/endpoints"
 	"github.com/strava/go.statsd"
 )
 
@@ -153,7 +152,10 @@ func (ts *ThriftSet) OpenConn(hostPort string) (io.Closer, error) {
 
 // to allow stubbing for tests
 var socketBuilder = func(hostPort string, timeout time.Duration) (*thrift.TSocket, error) {
-	return thrift.NewTSocketTimeout(hostPort, timeout)
+	return thrift.NewTSocketConf(hostPort, &thrift.TConfiguration{
+		ConnectTimeout: timeout,
+		SocketTimeout:  timeout,
+	}), nil
 }
 
 // IdleTimeout returns the timeout for connections to live in the idle pool.

@@ -1,4 +1,4 @@
-go.serversets/httpset [![Build Status](https://travis-ci.org/strava/go.serversets.png?branch=master)](https://travis-ci.org/strava/go.serversets) [![Godoc Reference](https://godoc.org/github.com/strava/go.serversets?status.png)](https://godoc.org/github.com/strava/go.serversets/httpset)
+go.serversets/httpset [![Build Status](https://travis-ci.org/dongnguyenvt/go.serversets.png?branch=master)](https://travis-ci.org/dongnguyenvt/go.serversets) [![Godoc Reference](https://godoc.org/github.com/dongnguyenvt/go.serversets?status.png)](https://godoc.org/github.com/dongnguyenvt/go.serversets/httpset)
 =====================
 
 Package **httpset** provides round-robin balancing over a set of endpoints 
@@ -13,8 +13,8 @@ Usage
 	import (
 		"log"
 
-		"github.com/strava/go.serversets"
-		"github.com/strava/go.serversets/httpset"
+		"github.com/dongnguyenvt/go.serversets"
+		"github.com/dongnguyenvt/go.serversets/httpset"
 	)
 
 	func main() {
@@ -37,7 +37,7 @@ Usage
 
 Dependencies
 ------------
-* [github.com/strava/go.serversets](github.com/strava/go.serversets) to get the server list.
+* [github.com/dongnguyenvt/go.serversets](github.com/dongnguyenvt/go.serversets) to get the server list.
 However, one can use a predefined set of servers by doing something like:
 
 		t := httpset.NewTransport(nil)

@@ -4,10 +4,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/strava/go.serversets/fixedset"
-	"github.com/strava/go.serversets/internal/endpoints"
-
 	"github.com/apache/thrift/lib/go/thrift"
+	"github.com/dongnguyenvt/go.serversets/fixedset"
+	"github.com/dongnguyenvt/go.serversets/internal/endpoints"
 )
 
 func TestThriftSet(t *testing.T) {

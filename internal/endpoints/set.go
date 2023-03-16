@@ -90,10 +90,10 @@ func (s *Set) GetConn() (*Conn, error) {
 	}
 
 	c, err := minEP.GetConn()
-	if err == ErrGetOnClosedEndpoint {
-		// This is a super tight race condition with the above 5 lines.
-		// TODO: figure out if we should retry? or handle in application code?
-	}
+	//if err == ErrGetOnClosedEndpoint {
+	// This is a super tight race condition with the above 5 lines.
+	// TODO: figure out if we should retry? or handle in application code?
+	//}
 
 	return c, err
 }

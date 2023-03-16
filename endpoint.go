@@ -124,8 +124,6 @@ func (ep *Endpoint) Close() {
 	close(ep.done)
 	ep.wg.Wait()
 	ep.CloseEvent <- struct{}{}
-
-	return
 }
 
 func (ep *Endpoint) update(connection *zk.Conn) error {

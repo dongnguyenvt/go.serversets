@@ -6,7 +6,7 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/strava/go.serversets/fixedset"
+	"github.com/dongnguyenvt/go.serversets/fixedset"
 )
 
 type StubRoundTripper struct {

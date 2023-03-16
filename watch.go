@@ -146,7 +146,6 @@ func (w *Watch) Close() {
 	// the goroutine watching for events must be terminted
 	// before we close this channel, since it might still be sending events.
 	close(w.event)
-	return
 }
 
 // IsClosed returns if this watch has been closed. This is a way for libraries wrapping
