@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/mbrostami/consistenthash"
-	"github.com/reusee/mmh3"
+	"github.com/twmb/murmur3"
 )
 
 var (
@@ -111,7 +111,7 @@ func (s *MCSet) setEndpoints(endpoints []string) {
 
 	s.Logger.Printf("new endpoints for mcset: %v", endpoints)
 
-	s.consistent = consistenthash.New(150, mmh3.Sum32)
+	s.consistent = consistenthash.New(150, murmur3.Sum32)
 	for _, endpoint := range endpoints {
 		s.consistent.Add(endpoint)
 	}
