@@ -6,8 +6,6 @@ github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da h1:oI5xCqsCo564l
 github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da/go.mod h1:cIg4eruTrX1D+g88fzRXU5OdNfaM+9IcxsU14FzY7Hc=
 github.com/reusee/mmh3 v0.0.0-20140820141314-64b85163255b h1:GQkEnyBFqzQXb3RFqGt5z2QcBZJVQxgzXKF/sPCFh7w=
 github.com/reusee/mmh3 v0.0.0-20140820141314-64b85163255b/go.mod h1:ADBBIMrt68BC/v967NyoiPZMwPVq44r8QJ5oRyXJHJs=
-github.com/strava/go.statsd v0.0.0-20160111204817-f756e6c0f299 h1:hFsXAx65fr+mHKNIC7FHUREdjNKGlwxOC6JHPjVgTys=
-github.com/strava/go.statsd v0.0.0-20160111204817-f756e6c0f299/go.mod h1:FmSq9vy48XoqWTyux/nw3Y3g4sXEg1DvDuDm0p9SXBk=
 github.com/yuin/goldmark v1.4.13/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
 golang.org/x/crypto v0.0.0-20210921155107-089bfa567519/go.mod h1:GvvjBRRGRdwPK5ydBHafDWAxML/pGHZbMvKqRZ5+Abc=

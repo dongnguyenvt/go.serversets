@@ -7,16 +7,6 @@ import (
 
 	"github.com/apache/thrift/lib/go/thrift"
 	"github.com/dongnguyenvt/go.serversets/internal/endpoints"
-	"github.com/strava/go.statsd"
-)
-
-const (
-	sdConnRequested = "thriftset.conn.requested"
-	sdConnCreated   = "thriftset.conn.created"
-	sdConnCreateErr = "thriftset.conn.create_error"
-	sdConnReleased  = "thriftset.conn.released"
-	sdConnClosed    = "thriftset.conn.closed"
-	sdZKEvent       = "thriftset.zk_event"
 )
 
 // Default values for ThriftSet parameters
@@ -61,7 +51,6 @@ type ThriftSet struct {
 
 	LastEvent  time.Time
 	EventCount int
-	StatsD     statsd.Stater
 
 	maxIdlePerHost   int // max idle must be >= max active
 	maxActivePerHost int
@@ -93,8 +82,6 @@ func New(watch Watcher) *ThriftSet {
 		event:         make(chan struct{}, 1),
 		watcherClosed: make(chan struct{}, 1),
 
-		StatsD: statsd.NoopClient{},
-
 		maxIdlePerHost:   DefaultMaxIdlePerHost,
 		maxActivePerHost: DefaultMaxActivePerHost,
 		timeout:          DefaultTimeout,
@@ -117,8 +104,6 @@ func New(watch Watcher) *ThriftSet {
 			case <-ts.done:
 				return
 			case <-watch.Event():
-				ts.StatsD.Count(sdZKEvent, 1.0)
-
 				ts.resetEndpoints()
 				ts.triggerEvent()
 			}
@@ -139,11 +124,8 @@ var watcherClosed = func() {}
 // by the endpoints.Set to create connections for a given endpoint.
 // This is part of the endpoints.Pooler interface.
 func (ts *ThriftSet) OpenConn(hostPort string) (io.Closer, error) {
-	ts.StatsD.Count(sdConnCreated)
-
 	socket, err := socketBuilder(hostPort, ts.timeout)
 	if err != nil {
-		ts.StatsD.Count(sdConnCreateErr, 1.0)
 		return nil, err
 	}
 
@@ -242,8 +224,6 @@ func (ts *ThriftSet) GetConn() (*Conn, error) {
 		return nil, ErrGetOnClosedSet
 	}
 
-	ts.StatsD.Count(sdConnRequested)
-
 	c, err := ts.endpoints.GetConn()
 	if err != nil {
 		if v, ok := errMap[err]; ok {
@@ -269,8 +249,6 @@ func (ts *ThriftSet) resetEndpoints() {
 
 // Release puts the connection back in the pool and allows others to use it.
 func (c *Conn) Release() error {
-	c.thriftset.StatsD.Count(sdConnReleased)
-
 	// TODO: this will return an error if the connection
 	// failed to be closed. Is that what we want?
 
@@ -281,7 +259,6 @@ func (c *Conn) Release() error {
 // Close does not put this connection back into the pool.
 // This should be called if there is some sort of problem with the connection.
 func (c *Conn) Close() error {
-	c.thriftset.StatsD.Count(sdConnClosed, 1.0)
 	return c.parent.Close()
 }
 
