@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/golang/groupcache/consistenthash"
+	"github.com/mbrostami/consistenthash"
 	"github.com/reusee/mmh3"
 )
 
@@ -46,7 +46,7 @@ type MCSet struct {
 	// calling SetEndpoints will not trigger this type of event.
 	event chan struct{}
 
-	consistent *consistenthash.Map
+	consistent *consistenthash.ConsistentHash
 
 	lock      sync.Mutex
 	endpoints []string
@@ -112,7 +112,9 @@ func (s *MCSet) setEndpoints(endpoints []string) {
 	s.Logger.Printf("new endpoints for mcset: %v", endpoints)
 
 	s.consistent = consistenthash.New(150, mmh3.Sum32)
-	s.consistent.Add(endpoints...)
+	for _, endpoint := range endpoints {
+		s.consistent.Add(endpoint)
+	}
 }
 
 // Endpoints returns the current endpoints for this service.

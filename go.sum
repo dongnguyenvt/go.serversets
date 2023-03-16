@@ -2,8 +2,8 @@ github.com/apache/thrift v0.0.0-20171203172758-327ebb6c2b6d h1:b/FqDLjWXDQI6XBYv
 github.com/apache/thrift v0.0.0-20171203172758-327ebb6c2b6d/go.mod h1:cp2SuWMxlEZw2r+iP2GNCdIi4C1qmUzdZFSVb+bacwQ=
 github.com/go-zookeeper/zk v1.0.3 h1:7M2kwOsc//9VeeFiPtf+uSJlVpU66x9Ba5+8XK7/TDg=
 github.com/go-zookeeper/zk v1.0.3/go.mod h1:nOB03cncLtlp4t+UAkGSV+9beXP/akpekBwL+UX1Qcw=
-github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da h1:oI5xCqsCo564l8iNU+DwB5epxmsaqB+rhGL0m5jtYqE=
-github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da/go.mod h1:cIg4eruTrX1D+g88fzRXU5OdNfaM+9IcxsU14FzY7Hc=
+github.com/mbrostami/consistenthash v1.0.1 h1:0tov35DaT5sjISpNOfIBTK9NyFMbOncm6TJqTaIdubY=
+github.com/mbrostami/consistenthash v1.0.1/go.mod h1:W+oOR3d4hM0ADqHRLpo0/42SNa1wnPyEhNrhcx4yu4M=
 github.com/reusee/mmh3 v0.0.0-20140820141314-64b85163255b h1:GQkEnyBFqzQXb3RFqGt5z2QcBZJVQxgzXKF/sPCFh7w=
 github.com/reusee/mmh3 v0.0.0-20140820141314-64b85163255b/go.mod h1:ADBBIMrt68BC/v967NyoiPZMwPVq44r8QJ5oRyXJHJs=
 github.com/yuin/goldmark v1.4.13/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=
